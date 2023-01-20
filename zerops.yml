@@ -1,0 +1,15 @@
+minecraft:
+  build:
+    base:
+      - ubuntu@22.04
+    build:
+      - cat eula.txt
+    deploy:
+      - eula.txt
+      - server.properties
+  run:
+    prepare:
+      - apt-get -y update
+      - apt-get -y install openjdk-17-jre-headless
+      - wget https://piston-data.mojang.com/v1/objects/c9df48efed58511cdd0213c56b9013a7b5c9ac1f/server.jar
+    start: java -Xms8G -Xmx32G -jar server.jar nogui
